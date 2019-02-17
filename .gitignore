@@ -2,10 +2,6 @@ _site/
 .sass-cache/
 .bundle/
 Gemfile.lock
-thinkspace.gemspec
-_config.yml
-script/
-Gemfile
 
 # Windows image file caches
 Thumbs.db
