@@ -1,1 +1,1 @@
-Sitemap: http://dhsathiya.github.io/sitemap.xml
+Sitemap: https://dhsathiya.github.io/#%20site%20url/sitemap.xml
