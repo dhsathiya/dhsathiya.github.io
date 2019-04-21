@@ -1,0 +1,154 @@
+<style>
+	body{
+		font-family: monospace;
+		margin: 20px;
+	}
+	pre,code{
+		background-color: #eeeeee;
+	}
+	pre{
+		padding:5px;
+	}
+	code{
+		padding:2px;
+	}
+	blockquote{
+		padding-left: 10px;
+		border-left: 5px solid grey;
+		margin:0px;
+		background-color: #eeeeee;
+	}
+</style>
+<h1 id="compilenginxwithechonginxmoduleheadersmorenginxmoduleluanginxmodule">Compile Nginx with echo-nginx-module, headers-more-nginx-module, lua-nginx-module</h1>
+
+<blockquote>
+  <p>Get the modules from github<br />
+  I wanted this article to be specific. <br /></p>
+</blockquote>
+
+<hr />
+
+<p>Nginx :</p>
+
+<pre><code>Get it from Github. :)
+</code></pre>
+
+<p>Dependencies :</p>
+
+<pre><code>LuaJIT-2.0.4  lua2.0  lua2.1  pcre-8.42  zlib-1.2.11
+</code></pre>
+
+<p>Modules :</p>
+
+<pre><code>echo-nginx-module  headers-more-nginx-module  lua-nginx-module  ngx_devel_kit
+</code></pre>
+
+<hr />
+
+<h2 id="stepstobefollowed">Steps to be followed</h2>
+
+<p>Run <code>make</code> and <code>make install</code> in the following directories</p>
+
+<pre><code>LuaJIT-2.0.4  lua2.0  lua2.1  pcre-8.42  zlib-1.2.11
+</code></pre>
+
+<p>Now you have to tell Nginx that where <code>lua-2.0</code> and <code>lua-2.1</code> are located.</p>
+
+<pre><code class="bash language-bash"># tell nginx's build system where to find LuaJIT 2.0:
+export LUAJIT_LIB=/usr/local/lib/
+export LUAJIT_INC=/usr/local/include/luajit-2.0
+
+# tell nginx's build system where to find LuaJIT 2.1:
+export LUAJIT_LIB=/usr/local/lib/
+export LUAJIT_INC=/usr/local/include/luajit-2.1
+</code></pre>
+
+<p>Go to Nginx directory and run</p>
+
+<pre><code class="bash language-bash">LUAJIT_LIB=/usr/local/lib LUAJIT_INC=/usr/local/include/luajit-2.0 \
+./configure \
+--user=nobody                          \
+--group=nobody                         \
+--prefix=/etc/nginx                   \
+--sbin-path=/usr/sbin/nginx           \
+--conf-path=/etc/nginx/nginx.conf     \
+--pid-path=/var/run/nginx.pid         \
+--lock-path=/var/run/nginx.lock       \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--with-http_gzip_static_module        \
+--with-http_stub_status_module        \
+--with-http_ssl_module                \
+--with-pcre                           \
+--with-file-aio                       \
+--with-http_realip_module             \
+--without-http_scgi_module            \
+--without-http_uwsgi_module           \
+--without-http_fastcgi_module ${NGINX_DEBUG:+--debug} \
+--with-cc-opt=-O2 --with-ld-opt='-Wl,-rpath,/usr/local/lib' \
+--add-module=../modules/echo-nginx-module \
+--add-module=../modules/headers-more-nginx-module \
+--add-module=../modules/ngx_devel_kit \
+--add-module=../modules/lua-nginx-module
+</code></pre>
+
+<pre><code>make install
+</code></pre>
+
+<hr />
+
+<h2 id="testthebuild">Test the build</h2>
+
+<p>to test if all this works or not</p>
+
+<pre><code>nginx -t
+</code></pre>
+
+<p>if you get this message below</p>
+
+<pre><code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+</code></pre>
+
+<p>then the installation was successful.</p>
+
+<p>Check the installed modules by running</p>
+
+<pre><code>nginx -V
+</code></pre>
+
+<p>To test the <code>echo</code> and <code>lua</code> modules add these line to your nginx.conf file</p>
+
+<pre><code>location /echo {
+        echo hello;
+        echo world;
+}
+location /sum {
+    content_by_lua_block {
+        local args = ngx.req.get_uri_args();
+        ngx.say(args.a + args.b)
+    }
+}
+</code></pre>
+
+<p>Restart <code>Nginx</code></p>
+
+<p>and hit the following command to test <code>echo</code></p>
+
+<pre><code>curl "http://localhost:&lt;your-port&gt;/echo"
+</code></pre>
+
+<p>and for <code>lua</code></p>
+
+<pre><code>curl "http://localhost:&lt;your-port&gt;/sum/?a=10&amp;b=20"
+</code></pre>
+
+<hr />
+
+<h3 id="authorsquote">Author's quote</h3>
+
+<blockquote>
+  <p>If you find that there is something missing then you can contact me through <br />
+  Instagram : @d.vlpr <br />
+  Or any other way if you know.</p>
+</blockquote>
