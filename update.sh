@@ -2,5 +2,5 @@
 
 git add .
 git commit -m "auto backup $(date)"
-git push origin $sitename
+git push origin master
 

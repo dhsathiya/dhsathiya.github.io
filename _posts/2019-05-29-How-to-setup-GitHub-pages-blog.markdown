@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "How to setup Github pages blog"
-date: 2019-05-25 23:53:11 +0530
+date: 2019-05-29
+categories: blogging
 tags: github blog jekyll
 ---
 I was planning to write this post since a while but could not because of I was busy finding a way to make a docker image to handle the building ofjekyll. I finally done it.
@@ -30,4 +31,4 @@ I hope the steps mentioned above worked out for you as well.
 If not you can email me or send a DM or twitter.
  
 [Dockerfile]: https://github.com/dhsathiya/docker/tree/master/dockerfiles/ghblog
- 
+

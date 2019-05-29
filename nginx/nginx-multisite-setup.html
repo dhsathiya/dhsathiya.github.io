@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Nginx multisite setup | Devarshi’s blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Nginx multisite setup" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You’ll get to make Nginx multisite setup on your local machine. Which further can be expanded to on your live servers !" />
+<meta property="og:description" content="You’ll get to make Nginx multisite setup on your local machine. Which further can be expanded to on your live servers !" />
+<link rel="canonical" href="http://0.0.0.0:4000/nginx/nginx-multisite-setup.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/nginx/nginx-multisite-setup.html" />
+<meta property="og:site_name" content="Devarshi’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-22T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"You’ll get to make Nginx multisite setup on your local machine. Which further can be expanded to on your live servers !","@type":"BlogPosting","url":"http://0.0.0.0:4000/nginx/nginx-multisite-setup.html","headline":"Nginx multisite setup","dateModified":"2019-05-22T00:00:00+00:00","datePublished":"2019-05-22T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/nginx/nginx-multisite-setup.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Devarshi's blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Devarshi&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Nginx multisite setup</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-05-22T00:00:00+00:00" itemprop="datePublished">May 22, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p>You’ll get to make Nginx multisite setup on your local machine. Which further can be expanded to on your live servers !</p>
+</blockquote>
+
+<p>Website default configurations which are used by Nginx to point which site to access and where the root of that website resides at /etc/nginx/sites-available/default who’s symlink is created at /etc/nginx/sites-enabled/.</p>
+
+<p>—<br /></p>
+<h2 id="creating-two-websites-to-test">Creating two websites to test</h2>
+<p>Run the following command to create Index files and inserting some dummy text inside them.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /var/www/html/one.test/public_html/ <span class="o">&amp;&amp;</span>
+<span class="nb">touch</span> /var/www/html/one.test/public_html/index.html <span class="o">&amp;&amp;</span>
+<span class="nb">echo</span> <span class="s2">"one.test"</span> <span class="o">&gt;</span> /var/www/html/one.test/public_html/index.html <span class="o">&amp;&amp;</span>
+<span class="nb">mkdir</span> /var/www/html/two.test/public_html/ <span class="o">&amp;&amp;</span>
+<span class="nb">touch</span> /var/www/html/two.test/public_html/index.html <span class="o">&amp;&amp;</span>
+<span class="nb">echo</span> <span class="s2">"two.test"</span> <span class="o">&gt;</span> /var/www/html/two.test/public_html/index.html
+</code></pre></div></div>
+<p>This will create two directories (here websites) named one.test and two.test and the same names as their respective content.</p>
+
+<p>—<br /></p>
+<h2 id="configure-the-default-file">Configure the default file</h2>
+<p>Now we have to tell Nginx that on request which directory to consider.</p>
+
+<p>For this replace the content of default file with the below code.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/html/one.test/public_html/;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name one.test;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+server {
+        listen 80 ;
+        listen [::]:80 ;
+
+        root /var/www/html/two.test/public_html/;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name two.test;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+</code></pre></div></div>
+<blockquote>
+  <p>The best way to learn is explore on your own.<br />
+So please try to fetch the things up on your own. Just Google them out.</p>
+</blockquote>
+
+<p>Now restart Nginx with <code class="highlighter-rouge">sudo service nginx restart</code> .</p>
+
+<p>—<br /></p>
+<h2 id="configure-your-etchosts-list">Configure your /etc/hosts list</h2>
+<p>I am using a virtual machine to setup all of these. This virtual machine is runnig at 192.168.33.78 IP address inside my host machine .</p>
+
+<p>You can change it according to your requirements.</p>
+
+<p>Add the following line to <code class="highlighter-rouge">/etc/hosts</code> file.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.33.78 one.test two.test 
+</code></pre></div></div>
+
+<p>—<br />
+That’s it ! Go to your browser and hit any of one.test or two.test .</p>
+
+  </div><a class="u-url" href="/nginx/nginx-multisite-setup.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Devarshi&#39;s blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Devarshi&#39;s blog</li><li><a class="u-email" href="mailto:devarshisathiya5@gmail.com">devarshisathiya5@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/dhsathiya"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">dhsathiya</span></a></li><li><a href="https://www.twitter.com/dhsathiya"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">dhsathiya</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>I am trying to explain what I experiment on my daily bases. Might end with some cool tips and tricks.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
