@@ -1,6 +1,10 @@
 /**
  * Reset some basic elements
  */
+* {
+  font-family: monospace;
+}
+
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -321,15 +325,20 @@ table {
   margin-left: 0;
   list-style: none; }
   .post-list > li {
-    margin-bottom: 30px; }
+    /*margin-bottom: 30px;*/ }
+
+.custom_h3 {
+  margin-bottom: 0px;
+}
 
 .post-meta {
   font-size: 14px;
   color: #828282; }
 
+
 .post-link {
   display: block;
-  font-size: 24px; }
+  font-size: 14px; }
 
 /**
  * Posts
@@ -503,3 +512,35 @@ table {
     color: #008080; }
   .highlight .il {
     color: #099; }
+
+/**
+ * Custom CSS
+ */    
+
+.content {
+  border: 0px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px; 
+}
+
+.category_name {
+  border: 0px solid grey;
+  width: calc((100% /3) - 6px);
+  margin-bottom: 3px;
+  color:#2a7ae2;
+}
+
+.post_block {
+  border: 0px solid blue;
+  margin-left: 20px;
+}
+
+.post_name {
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  max-width: 80%;
+  width: 80%;
+}
