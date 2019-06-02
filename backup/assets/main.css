@@ -544,3 +544,13 @@ table {
   max-width: 80%;
   width: 80%;
 }
+
+@media screen and (max-width: 720px) {
+    .content {
+        flex-direction: column;
+    }
+    
+    .category_name {
+        width: 100%;
+    }
+}
