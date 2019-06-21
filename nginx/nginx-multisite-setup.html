@@ -39,7 +39,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/creations/">Creations</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -63,13 +63,19 @@
 <p>—<br /></p>
 <h2 id="creating-two-websites-to-test">Creating two websites to test</h2>
 <p>Run the following command to create Index files and inserting some dummy text inside them.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /var/www/html/one.test/public_html/ <span class="o">&amp;&amp;</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nb">mkdir</span> /var/www/html/one.test/public_html/ <span class="o">&amp;&amp;</span>
 <span class="nb">touch</span> /var/www/html/one.test/public_html/index.html <span class="o">&amp;&amp;</span>
 <span class="nb">echo</span> <span class="s2">"one.test"</span> <span class="o">&gt;</span> /var/www/html/one.test/public_html/index.html <span class="o">&amp;&amp;</span>
 <span class="nb">mkdir</span> /var/www/html/two.test/public_html/ <span class="o">&amp;&amp;</span>
 <span class="nb">touch</span> /var/www/html/two.test/public_html/index.html <span class="o">&amp;&amp;</span>
 <span class="nb">echo</span> <span class="s2">"two.test"</span> <span class="o">&gt;</span> /var/www/html/two.test/public_html/index.html
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>This will create two directories (here websites) named one.test and two.test and the same names as their respective content.</p>
 
 <p>—<br /></p>
@@ -77,7 +83,35 @@
 <p>Now we have to tell Nginx that on request which directory to consider.</p>
 
 <p>For this replace the content of default file with the below code.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td><td class="rouge-code"><pre>server {
         listen 80;
         listen [::]:80;
 
@@ -105,7 +139,7 @@ server {
                 try_files $uri $uri/ =404;
         }
 }
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <blockquote>
   <p>The best way to learn is explore on your own.<br />
 So please try to fetch the things up on your own. Just Google them out.</p>
@@ -120,8 +154,9 @@ So please try to fetch the things up on your own. Just Google them out.</p>
 <p>You can change it according to your requirements.</p>
 
 <p>Add the following line to <code class="highlighter-rouge">/etc/hosts</code> file.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.33.78 one.test two.test 
-</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>192.168.33.78 one.test two.test 
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>—<br />
 That’s it ! Go to your browser and hit any of one.test or two.test .</p>

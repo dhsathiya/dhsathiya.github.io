@@ -39,7 +39,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/creations/">Creations</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -67,8 +67,9 @@
   <li>clone that repository on your local machine.</li>
   <li>make a directory with any name that you want. For example : <code class="highlighter-rouge">mkdir myblog</code></li>
   <li>run the following command in order to make a jekyll site and serve it to local machine so that you can make changes locally.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -v /media/devarshi/HDD/dhsathiya.github.io:/content --name=blog -p 127.0.0.1:4000:4000 dhsathiya/ghblog
-</code></pre></div>    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker run -d -v /media/devarshi/HDD/dhsathiya.github.io:/content --name=blog -p 127.0.0.1:4000:4000 dhsathiya/ghblog
+</pre></td></tr></tbody></table></code></pre></div>    </div>
     <blockquote>
       <p>You can find the dockerfile on <a href="https://github.com/dhsathiya/docker/tree/master/dockerfiles/ghblog">Dockerfile</a>.</p>
     </blockquote>

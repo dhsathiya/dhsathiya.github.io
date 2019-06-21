@@ -39,7 +39,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/creations/">Creations</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -65,10 +65,13 @@
 <p>Zsh alongside oh-my-zsh provides custom themes to the terminal to get the best view.</p>
 
 <p>To install Zsh and oh-my-zsh use the following commands:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install zsh
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>$ sudo apt install zsh
 
 $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>You can also use oh-my-zsh website to get the installation instructions : <a href="https://ohmyz.sh/">https://ohmyz.sh/</a></p>
 
 <p>—<br /></p>
@@ -81,11 +84,31 @@ $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/insta
 <p>In most of the cases (whenever I installed tmux) I never got a .tmux.conf file.</p>
 
 <p>Use the following command to create one</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch ~/.tmux.conf
-</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>touch ~/.tmux.conf
+</pre></td></tr></tbody></table></code></pre></div></div>
 <h1 id="add-custom-shortcuts">Add custom shortcuts</h1>
 <p>To add custom shortcut open up .tmux.conf file in your preferred editor (such as vim or nano) and add the following code blocks as per your requirements.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># remap prefix from 'C-b' to 'C-a'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre># remap prefix from 'C-b' to 'C-a'
 unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
@@ -104,7 +127,7 @@ bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>—<br /></p>
 <h2 id="what-next-">What Next ?</h2>

@@ -39,7 +39,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/creations/">Creations</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -76,7 +76,15 @@ You can come back and start from here at when you complete this topic : ‘Conta
 <p>—<br /></p>
 <h1 id="before-we-start">Before we start</h1>
 <p>Check out these few commands. We’ll be using these a lot</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Docker Container list : Displays all the running containers</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c"># Docker Container list : Displays all the running containers</span>
 <span class="nv">$ </span>docker container <span class="nb">ls</span>
 <span class="nt">-----</span>
 <span class="c"># Docker Container list : running as well as stopped containers</span>
@@ -84,30 +92,47 @@ You can come back and start from here at when you complete this topic : ‘Conta
 <span class="nt">-----</span>
 <span class="c"># Docker Images : List and Display all the images that you already downloaded to your system. Example: Ubuntu, Nginx, Mariadb etc.</span>
 <span class="nv">$ </span>docker images
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>—<br /></p>
 <h1 id="lets-start-with-ubuntu-in-a-container">Let’s start with Ubuntu in a container</h1>
 <p>Before we run a container we have to <em>download</em> a Image which will run inside that container.</p>
 
 <p>To <em>pull</em> (simply download) the Ubuntu image we will run</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull ubuntu:latest
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker pull ubuntu:latest
 <span class="c"># pull -&gt; to download the image</span>
 <span class="c"># ubuntu -&gt; name of the image</span>
 <span class="c"># latest -&gt; version of that image</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>You can check out other images available on : <a href="https://hub.docker.com/">Docker Hub</a></p>
 
 <p>To <em>list</em> the <em>images</em> that you already have we will run</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker images
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker images
 <span class="c"># Output </span>
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              94e814e2efa8        13 days ago         88.9MB
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>Okay cool. We now have Ubuntu image downloaded.</p>
 
 <p>To start a container with this image we will run</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-i</span> <span class="nt">-d</span> ubuntu
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker run <span class="nt">-i</span> <span class="nt">-d</span> ubuntu
 <span class="c"># run -&gt; to start a container with a specific image</span>
 <span class="c"># -i -&gt; to keep STDIN open otherwise the container will exit just after creation.</span>
 <span class="c"># -d -&gt; detached mode means the container will run in background. </span>
@@ -116,9 +141,17 @@ ubuntu              latest              94e814e2efa8        13 days ago         
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 f2c1e776d797        ubuntu              <span class="s2">"/bin/bash"</span>         17 seconds ago      Up 15 seconds                           boring_thompson
 Now our Docker container is up and running.
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>To get a <em>shell access</em> of the Ubuntu container we will run</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;CONTAINER ID&gt; bash
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;CONTAINER ID&gt; bash
 or 
 <span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;CONTAINER NAME&gt; bash
 <span class="c"># In my case it would be </span>
@@ -126,42 +159,63 @@ or
 <span class="c"># exec -&gt; which allows a user to spawn a process inside their Docker container</span>
 <span class="c"># -i -&gt; interactive</span>
 <span class="c"># -t -&gt; pseudo tty</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>To exit the shell of the container simply type <code class="highlighter-rouge">exit</code> and press <code class="highlighter-rouge">return/enter</code> key.</p>
 
 <p>Alternatives of the same commands can be :</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> ubuntu
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker run <span class="nt">-it</span> ubuntu
 <span class="c"># You will directly gain access to the shell of the docker container. But when you exit from the shell, container will stop immediately.</span>
 <span class="nt">-----</span>
 <span class="nv">$ </span>docker run <span class="nt">--rm</span> <span class="nt">-it</span> ubuntu
  <span class="c"># This command will create a removable container. That is you will get a shell access but as soon as you exit the container will be stopped and removed. Good for quick testing.</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>Now it’s time to <em>stop</em> the container</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container stop &lt;CONTAINER ID&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker container stop &lt;CONTAINER ID&gt;
 <span class="c">#or</span>
 <span class="nv">$ </span>docker container stop &lt;CONTAINER NAME&gt;
 <span class="c"># in my case it would be</span>
 <span class="c"># $ docker container stop boring_thompson</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>Want to <em>restart</em> your container ? Your files will be as it is !</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container start &lt;CONTAINER ID&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker container start &lt;CONTAINER ID&gt;
 or
 <span class="nv">$ </span>docker container start &lt;CONTAINER NAME&gt;
 <span class="c"># in my case it would be</span>
 <span class="c"># $ docker container start boring_thompson</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>Oops ! what if you messed up with your docker container ?</p>
 
 <p>Simple just <em>remove</em> it and start with a new container !</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">rm</span> &lt;CONTAINER ID&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$ </span>docker container <span class="nb">rm</span> &lt;CONTAINER ID&gt;
 or
 <span class="nv">$ </span>docker container <span class="nb">rm</span> &lt;CONTAINER NAME&gt;
 <span class="c"># in my case it would be</span>
 <span class="c"># $ docker container rm boring_thompson</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>Let’s remove Ubuntu image as well</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker image rm ubuntu
-</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>$ docker image rm ubuntu
+</pre></td></tr></tbody></table></code></pre></div></div>
 <blockquote>
   <p>That is probably all the basics of the Docker. I will cover some more detailed topics like Networking and Volumes in a new article.</p>
 </blockquote>

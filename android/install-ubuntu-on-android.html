@@ -39,7 +39,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/creations/">Creations</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -69,14 +69,19 @@ Open Termux from your launcher.</p>
 <p>—<br /></p>
 <h2 id="install-ubuntu-chroot-with-termux">Install Ubuntu chroot with Termux</h2>
 <p>Type the following commands in Termux</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pkg <span class="nb">install </span>wget proot
-</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>pkg <span class="nb">install </span>wget proot
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>The script will make its files in the current directory. If you want to install Ubuntu-filesystem at a specific location then go to that location and call the script from its relative path.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/jails/ubuntu
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="nb">mkdir</span> <span class="nt">-p</span> ~/jails/ubuntu
 <span class="nb">cd</span> ~/jails/ubuntu
 wget https://raw.githubusercontent.com/Neo-Oli/termux-ubuntu/master/ubuntu.sh
 bash ubuntu.sh
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 <p>After running it you can run <code class="highlighter-rouge">start-ubuntu.sh</code> to switch into your ubuntu.</p>
 
 <p>—<br /></p>

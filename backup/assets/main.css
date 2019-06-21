@@ -2,7 +2,7 @@
  * Reset some basic elements
  */
 * {
-  font-family: monospace;
+  /*font-family: monospace;*/
 }
 
 body, h1, h2, h3, h4, h5, h6,
@@ -113,7 +113,7 @@ code {
   font-size: 15px;
   border: 1px solid #e8e8e8;
   border-radius: 3px;
-  background-color: #eef; }
+  /*background-color: #eef;*/ }
 
 code {
   padding: 1px 5px; }
@@ -545,6 +545,10 @@ table {
   width: 80%;
 }
 
+code {
+  font-family: monospace;
+}
+
 @media screen and (max-width: 720px) {
     .content {
         flex-direction: column;
@@ -553,4 +557,33 @@ table {
     .category_name {
         width: 100%;
     }
+}
+
+.rouge-gutter {
+    width:15px
+}
+
+table {
+    margin-bottom: 0px;
+}
+
+pre {
+    padding: 10px;
+    margin: 0px;
+    border: none;
+}
+
+table td {
+    border: none;
+    padding: 0px;
+}
+
+.gl {
+    border: 0px;
+    border-right: 1px solid grey;
+    color: grey; 
+}
+
+.highlight {
+    background: white !important;
 }
