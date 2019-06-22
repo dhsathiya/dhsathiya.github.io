@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Host website without static IP"
-date: 2019-05-21 
+date: 2019-06-21 
 categories: hosting
 tags: free hosting raspberry IP
 ---
