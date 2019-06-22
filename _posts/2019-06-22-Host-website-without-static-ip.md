@@ -6,7 +6,7 @@ categories: hosting
 tags: free hosting raspberry IP
 ---
 
-I always wanted to try to setup a home based server. SO I created a setup with Raspberry Pi, TP-link Router and a free Dynamic DNS service.
+I always wanted to try to setup a home based server. So I created a setup with Raspberry Pi, TP-link Router and a free Dynamic DNS service.
 
 Stuff that you need :
 1. Raspberry Pi / Laptop / PC [I am using Raspberry Pi with Debian based OS]
